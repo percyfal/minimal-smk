@@ -17,13 +17,12 @@ jobs:
           directory: .
           snakefile: Snakefile
           args: "--use-conda -j 2 --conda-create-envs-only"
-      - name: Create .snakemake/conda and add dummy file
+      - name: Create .snakemake/conda
         run: |
           mkdir -p .snakemake/conda
-          touch .snakemake/conda/foo.yaml
           pwd
-          ls -a
-          ls .snakemake
+          ls -al
+          ls -al .snakemake
 
 
 
