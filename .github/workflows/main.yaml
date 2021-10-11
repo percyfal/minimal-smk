@@ -31,7 +31,6 @@ jobs:
           pwd
           ls
           ls /
-          find / -name condaenv.py
           /github/workspace/condaenv.py
         shell: bash
 
