@@ -6,10 +6,24 @@ on:
     branches_ignore: []
 
 jobs:
+  install_environments:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Create .snakemake/conda and add dummy file
+        run: |
+          mkdir -p .snakemake/conda
+          touch .snakemake/conda/foo.yaml
+          pwd
+          ls -a
+          ls .snakemake
+
+
   linting:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
       - name: Linting
         uses: snakemake/snakemake-github-action@v1.23.0
@@ -19,10 +33,21 @@ jobs:
           args: '--lint'
           task: 'run'
           stagein: ''
+      - name: list contents
+        run: |
+          pwd
+          ls -a
+          ls .snakemake
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: list .snakemake contents
+        run: |
+          pwd
+          ls -a
+          ls .snakemake
+
       - name: checkout submodules
         uses: textbook/git-checkout-submodule-action@2.0.0
       - name: Install workflow environments         # FIXME: target for cache
