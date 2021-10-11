@@ -25,6 +25,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+
+      - name: checkout submodules
+        uses: textbook/git-checkout-submodule-action@2.0.0
+
+      - name: test workflow
+        uses: snakemake/snakemake-github-action@v1.23.0
+        with:
+          directory: .
+          snakefile: Snakefile
+          args: "--use-conda -j 2"
+
       - name: print environment hash
         id: print_hash
         run: |
@@ -47,13 +58,3 @@ jobs:
         with:
           path: .snakemake/conda
           key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ steps.get_env_hash.outputs.hash }}
-
-      - name: checkout submodules
-        uses: textbook/git-checkout-submodule-action@2.0.0
-
-      - name: test workflow
-        uses: snakemake/snakemake-github-action@v1.23.0
-        with:
-          directory: .
-          snakefile: Snakefile
-          args: "--use-conda -j 2"
