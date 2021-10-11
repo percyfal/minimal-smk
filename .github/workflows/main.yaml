@@ -28,7 +28,6 @@ jobs:
       - name: get environment hash
         id: get_env_hash
         run: |
-          condaenv.py
           echo "::set-output hash=/github/workspace/condaenv.py 2> /dev/null"
         shell: bash
 
