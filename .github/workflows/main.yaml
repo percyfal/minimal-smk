@@ -28,6 +28,7 @@ jobs:
       - name: get environment hash
         id: get_env_hash
         run: |
+          condaenv.py
           echo "::set-output hash=/github/workspace/condaenv.py 2> /dev/null"
         shell: bash
 
@@ -41,6 +42,7 @@ jobs:
 
       - name: checkout submodules
         uses: textbook/git-checkout-submodule-action@2.0.0
+
       - name: test workflow
         uses: snakemake/snakemake-github-action@v1.23.0
         with:
