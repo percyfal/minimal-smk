@@ -25,6 +25,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: print environment hash
+        id: print_hash
+        run: |
+          /github/workspace/condaenv.py
+        shell: bash
+
       - name: get environment hash
         id: get_env_hash
         run: |
