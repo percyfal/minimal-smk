@@ -31,13 +31,13 @@ jobs:
           pwd
           ls
           ls /
-          /github/workspace/condaenv.py
+          /home/runner/work/minimal-smk/minimal-smk/condaenv.py
         shell: bash
 
       - name: get environment hash
         id: get_env_hash
         run: |
-          echo "::set-output hash=/github/workspace/condaenv.py 2> /dev/null"
+          echo "::set-output hash=/home/runner/work/minimal-smk/minimal-smk/condaenv.py 2> /dev/null"
         shell: bash
 
       - name: cache-conda
