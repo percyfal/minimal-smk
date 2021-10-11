@@ -5,21 +5,19 @@ on:
   pull_request:
     branches_ignore: []
 
-
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v2
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@2.0.0
-      - name: Test workflow
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Linting
         uses: snakemake/snakemake-github-action@v1.23.0
         with:
-          directory: .
-          snakefile: Snakefile
-          args: "-j 1"
-              
+          directory: '.'
+          snakefile: 'Snakefile'
+          args: '--lint'
+          task: 'run'
+          stagein: ''
         
     
