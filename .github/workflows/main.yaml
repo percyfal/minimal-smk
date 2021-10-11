@@ -11,12 +11,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Linting
-        uses: snakemake/snakemake-github-action@v1.23.0
-        with:
-          directory: '.'
-          snakefile: 'Snakefile'
-          args: '--lint'
 
       - name: cache-conda
         uses: actions/cache@v2
@@ -25,6 +19,13 @@ jobs:
         with:
           path: .snakemake/conda
           key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('.environments.yaml') }}
+
+      - name: Linting
+        uses: snakemake/snakemake-github-action@v1.23.0
+        with:
+          directory: '.'
+          snakefile: 'Snakefile'
+          args: '--lint'
 
       - name: checkout submodules
         uses: textbook/git-checkout-submodule-action@2.0.0
