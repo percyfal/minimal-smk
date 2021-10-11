@@ -28,6 +28,10 @@ jobs:
       - name: print environment hash
         id: print_hash
         run: |
+          pwd
+          ls
+          ls /
+          find / -name condaenv.py
           /github/workspace/condaenv.py
         shell: bash
 
